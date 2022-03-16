@@ -158,13 +158,11 @@ public class LinkedList<T> {
 
     public int findLast(int numbOfRemovedElem) {
         checkEmpty();
-
         if (numbOfRemovedElem > size || numbOfRemovedElem <= 0) {
             return -1;
         }
 
         initSerialNumbers();
-
         Node<T> startNode = last;
         Node<T> node = last;
 
