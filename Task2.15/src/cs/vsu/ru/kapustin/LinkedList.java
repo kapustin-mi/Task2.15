@@ -47,13 +47,13 @@ public class LinkedList<T> {
 
         if (index == size) {
             addLast(elem);
-        }
-        if (index == 0) {
+        } else if (index == 0) {
             addFirst(elem);
+        } else {
+            Node<T> nodeBefore = node(index - 1);
+            nodeBefore.next = new Node<>(elem, nodeBefore.next);
+            size++;
         }
-
-        Node<T> nodeBefore = node(index - 1);
-        nodeBefore.next = new Node<>(elem, nodeBefore.next);
     }
 
     public void removeFirst() {
