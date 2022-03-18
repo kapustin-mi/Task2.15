@@ -43,7 +43,7 @@ public class LinkedList<T> {
     }
 
     public void add(int index, T elem) {
-        checkIndex(index);
+        checkPositionIndex(index);
 
         if (index == size) {
             addLast(elem);
@@ -81,8 +81,7 @@ public class LinkedList<T> {
     }
 
     public void remove(int index) {
-        checkEmpty();
-        checkIndex(index);
+        checkElementIndex(index);
 
         if (index == 0) {
             removeFirst();
@@ -93,7 +92,7 @@ public class LinkedList<T> {
     }
 
     public void remove(Node<T> nodeBefore) {
-        checkEmpty();
+        checkNode(nodeBefore);
 
         if (nodeBefore.next == last) {
             removeLast();
@@ -119,7 +118,7 @@ public class LinkedList<T> {
     }
 
     public T get(int index) {
-        checkEmpty();
+        checkElementIndex(index);
         return node(index).value;
     }
 
@@ -139,9 +138,34 @@ public class LinkedList<T> {
         }
     }
 
-    private void checkIndex(int index) {
+    private void checkPositionIndex(int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void checkElementIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void checkNode(Node<T> checkedNode) {
+        checkEmpty();
+
+        Node<T> node = first;
+        int numberOfPassesNodes = 0;
+        for (int i = 0; i < size - 1; i++) {
+            if (checkedNode != node) {
+                numberOfPassesNodes++;
+            } else {
+                break;
+            }
+            node = node.next;
+        }
+
+        if (numberOfPassesNodes == size) {
+            throw new NoSuchElementException();
         }
     }
 
