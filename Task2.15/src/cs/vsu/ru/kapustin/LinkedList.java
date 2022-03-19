@@ -182,7 +182,6 @@ public class LinkedList<T> {
     }
 
     public int findLast(int numbOfRemovedElem) {
-
         if (numbOfRemovedElem > size || numbOfRemovedElem <= 0) {
             return -1;
         }
@@ -191,10 +190,8 @@ public class LinkedList<T> {
         Node<T> node = last;
 
         while (size != 1) {
-            if (numbOfRemovedElem != 1) {
-                for (int numberOfPasses = 1; numberOfPasses < numbOfRemovedElem; numberOfPasses++) {
-                    node = node.next;
-                }
+            for (int numberOfPasses = 1; numberOfPasses < numbOfRemovedElem; numberOfPasses++) {
+                node = node.next;
             }
             remove(node);
         }
