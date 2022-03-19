@@ -155,6 +155,7 @@ public class LinkedList<T> {
 
         Node<T> node = first;
         int numberOfPassesNodes = 0;
+
         for (int i = 0; i < size - 1; i++) {
             if (checkedNode != node) {
                 numberOfPassesNodes++;
@@ -181,22 +182,19 @@ public class LinkedList<T> {
     }
 
     public int findLast(int numbOfRemovedElem) {
-        checkEmpty();
+
         if (numbOfRemovedElem > size || numbOfRemovedElem <= 0) {
             return -1;
         }
 
         initSerialNumbers();
-        Node<T> startNode = last;
         Node<T> node = last;
 
         while (size != 1) {
             if (numbOfRemovedElem != 1) {
-                int numberOfPasses = 1;
-                for (node = startNode; numberOfPasses < numbOfRemovedElem; numberOfPasses++) {
+                for (int numberOfPasses = 1; numberOfPasses < numbOfRemovedElem; numberOfPasses++) {
                     node = node.next;
                 }
-                startNode = node;
             }
             remove(node);
         }
